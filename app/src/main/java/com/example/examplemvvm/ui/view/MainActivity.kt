@@ -7,7 +7,9 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.example.examplemvvm.databinding.ActivityMainBinding
 import com.example.examplemvvm.ui.viewmodel.QuoteViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     //conecta viewmodel y vista
