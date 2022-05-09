@@ -1,16 +1,17 @@
 package com.example.examplemvvm.domain
 
+import com.example.examplemvvm.data.QuoteRepository
+import com.example.examplemvvm.data.model.Quote
 import com.example.examplemvvm.data.model.QuoteModel
-import com.example.examplemvvm.data.model.QuoteProvider
 import javax.inject.Inject
 
 class GetRandomQuotesUseCase @Inject constructor(
-    private val quoteProvider: QuoteProvider,
+    private val repository: QuoteRepository,
 ){
 
     //there is not coroutine because the data is in
-    operator fun invoke(): QuoteModel?{
-        val quotes = quoteProvider.quotes
+    suspend operator fun invoke(): Quote?{
+        val quotes = repository.getAllQuotesFromDatabase()
         if(!quotes.isNullOrEmpty()){
             val randomNumber = (quotes.indices).random()
             return quotes[randomNumber]
