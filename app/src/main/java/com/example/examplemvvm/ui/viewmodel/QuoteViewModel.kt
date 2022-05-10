@@ -22,7 +22,6 @@ class QuoteViewModel @Inject constructor(
     fun onCreate() {
         viewModelScope.launch {
             isLoading.postValue(true)
-
             val result = getQuotesUseCase()
 
             if(!result.isNullOrEmpty()) {
@@ -30,7 +29,6 @@ class QuoteViewModel @Inject constructor(
                 isLoading.postValue(false)
             }
         }
-
     }
 
     fun randomQuote(){
@@ -39,7 +37,7 @@ class QuoteViewModel @Inject constructor(
             val quote = getRandomQuotesUseCase()
 
             if(quote != null){
-                quoteModel.postValue(quote)
+                quoteModel.value = quote
             }
 
             isLoading.postValue(false)
